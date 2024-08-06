@@ -1,6 +1,38 @@
+"use client";
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
+  const [user, setUser] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      console.log(user);
+      router.push("/login");
+    }
+  }, [user, router]);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/user/profile`,
+          { withCredentials: true } // Ensure cookies are sent with the request
+        );
+        setUser(response.data);
+      } catch (err) {
+        setError("Failed to fetch user profile");
+        console.error(err);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
