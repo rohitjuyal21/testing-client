@@ -19,7 +19,7 @@ const Page = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/user/profile`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/profile`,
           { withCredentials: true } // Ensure cookies are sent with the request
         );
         setUser(response.data);
@@ -33,7 +33,8 @@ const Page = () => {
   }, []);
 
   const handleLogin = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google`;
+    (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google`),
+      "_self";
   };
 
   return (
