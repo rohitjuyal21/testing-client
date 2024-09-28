@@ -1,12 +1,12 @@
 "use client";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
-  const handleLogin = () => {
-    (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/api/login`),
-      "_self";
+  const handleLogin = async () => {
+    await signIn("google");
   };
 
   return (

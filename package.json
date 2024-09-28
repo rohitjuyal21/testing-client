@@ -12,7 +12,6 @@
     "axios": "^1.7.3",
     "http-proxy-middleware": "^3.0.0",
     "next": "14.2.5",
-    "next-http-proxy-middleware": "^1.2.6",
     "react": "^18",
     "react-dom": "^18",
     "react-google-button": "^0.8.0"
